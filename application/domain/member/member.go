@@ -18,5 +18,8 @@ func New(name, birthDate, address, email string) Member {
 
 // IsValid TODO: Implement validation
 func (m Member) IsValid() bool {
+	if m.Name == "" || m.Address == "" {
+		return false
+	}
 	return true
 }
