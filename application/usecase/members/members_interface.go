@@ -1,7 +1,10 @@
 package usecase
 
-import "context"
+import (
+	"context"
+	"orinz/application/adapter/rest/presenter"
+)
 
 type CreateMember interface {
-	Execute(ctx context.Context, member any) error
+	Execute(ctx context.Context, member presenter.MemberRequest) error
 }
