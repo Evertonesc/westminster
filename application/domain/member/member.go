@@ -15,3 +15,8 @@ func New(name, birthDate, address, email string) Member {
 		Email:     email,
 	}
 }
+
+// IsValid TODO: Implement validation
+func (m Member) IsValid() bool {
+	return true
+}
