@@ -12,6 +12,7 @@ func NewCreateMemberUseCase() CreateMemberUseCase {
 	return CreateMemberUseCase{}
 }
 
-func (uc CreateMemberUseCase) Execute(ctx context.Context, member presenter.MemberRequest) error {
+func (uc CreateMemberUseCase) Execute(ctx context.Context, memberRequest presenter.MemberRequest) error {
+
 	return nil
 }

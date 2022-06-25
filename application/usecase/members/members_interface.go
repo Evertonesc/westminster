@@ -6,5 +6,5 @@ import (
 )
 
 type CreateMember interface {
-	Execute(ctx context.Context, member presenter.MemberRequest) error
+	Execute(ctx context.Context, memberRequest presenter.MemberRequest) error
 }
