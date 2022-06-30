@@ -5,6 +5,22 @@ import (
 	"orinz/application/domain/member"
 )
 
+type Member struct {
+	Name      string
+	BirthDate string
+	Address   string
+	Email     string
+}
+
+func NewRepositoryMember(member member.Member) Member {
+	return Member{
+		Name:      member.Name,
+		BirthDate: member.BirthDate,
+		Address:   member.Address,
+		Email:     member.Email,
+	}
+}
+
 type MemberRepository struct {
 }
 
