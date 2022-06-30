@@ -20,7 +20,7 @@ func NewCreateMemberUseCase(repository member.Repository) CreateMemberUseCase {
 func (uc CreateMemberUseCase) Execute(ctx context.Context, memberRequest presenter.MemberRequest) error {
 
 	member := member.New(memberRequest.Name, memberRequest.BirthDate, memberRequest.Address, memberRequest.Email)
-	if !member.IsValid() {
+	if !member.Validate() {
 		return errors.New("member data is invalid")
 	}
 
