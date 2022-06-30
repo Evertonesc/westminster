@@ -16,9 +16,9 @@ func New(name, birthDate, address, email string) Member {
 	}
 }
 
-// IsValid TODO: Implement validation
-func (m Member) IsValid() bool {
-	if m.Name == "" || m.Address == "" {
+// Validate TODO: Implement validation
+func (m Member) Validate() bool {
+	if m.Name == "" || m.Address == "" || m.BirthDate == "" {
 		return false
 	}
 	return true
