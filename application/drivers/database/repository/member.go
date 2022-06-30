@@ -2,6 +2,8 @@ package repository
 
 import (
 	"context"
+	"errors"
+	"fmt"
 	"orinz/application/domain/member"
 )
 
@@ -29,5 +31,8 @@ func NewMemberRepository() MemberRepository {
 }
 
 func (r MemberRepository) CreateMember(ctx context.Context, member member.Member) error {
-	return nil
+	m := NewRepositoryMember(member)
+	fmt.Println(m)
+
+	return errors.New("error when trying to create a member")
 }
