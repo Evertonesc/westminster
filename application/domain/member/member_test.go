@@ -36,7 +36,6 @@ func TestMember_Validate(t *testing.T) {
 			},
 			want: false,
 		},
-
 		{
 			name: "should return invalid member when birthdate is empty",
 			fields: fields{
