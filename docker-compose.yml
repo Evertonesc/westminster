@@ -2,13 +2,13 @@ version: "3.7"
 
 services:
   orinz_database:
-    image: postgres
+    image: mysql
     container_name: orinz_db
     build:
       context: ./application/drivers/database/sql
       dockerfile: Dockerfile
     ports:
-      - "5432:5432"
+      - "3306:3036"
     restart: on-failure
     environment:
       APP_DB_NAME: orinz_db_dev

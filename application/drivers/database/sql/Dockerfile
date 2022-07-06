@@ -1,2 +1,2 @@
-FROM postgres:14.4-alpine
+FROM mysql:latest
 WORKDIR /app
