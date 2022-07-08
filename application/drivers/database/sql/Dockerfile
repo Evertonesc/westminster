@@ -1,2 +1,2 @@
-FROM mysql:8.0.3
+FROM mariadb:10.8.3
 WORKDIR /app
