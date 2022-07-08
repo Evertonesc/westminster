@@ -1,20 +1,25 @@
-version: "3.7"
+version: '3.7'
 
 services:
   orinz_database:
-    image: mysql
-    container_name: orinz_db
+    container_name: "orinz-dev"
+    image: "orinz-database"
+    restart: always
     build:
-      context: ./application/drivers/database/sql
+      context: application/drivers/database/sql/
       dockerfile: Dockerfile
-    ports:
-      - "3306:3036"
-    restart: on-failure
     environment:
-      APP_DB_NAME: orinz_db_dev
-      APP_DB_PASS: docker
-      APP_DB_USER: docker
-      POSTGRES_PASSWORD: "gotham"
-      POSTGRES_USER: "joker"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: orinz-dev
+      MYSQL_USER: spurgeon
+      MYSQL_PASSWORD: spurgeon
+    ports:
+      - "3306:3306"
+
     volumes:
-     - .:/docker-entrypoint-initdb.d/
+      - ./init:/docker-entrypoint-initdb.d
+#    volumes:
+#      - db_data:/var/lib/mysql
+
+#volumes:
+#  db_data:
