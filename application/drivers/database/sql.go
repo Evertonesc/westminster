@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-const templateDNS = "%s:%s@tcp(%s)/%s"
+const templateDNS = "%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local"
 
 // ConnectSQL uses gorm to provide database connection.
 // The dns template used is 'username:password@tcp(address)/dbname'
