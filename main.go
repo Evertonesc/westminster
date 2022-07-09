@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"orinz/application"
+)
 
 func main() {
-	fmt.Println("here we go!")
+	app := application.New()
+	fmt.Println(app)
 }
