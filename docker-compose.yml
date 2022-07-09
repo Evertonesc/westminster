@@ -4,7 +4,7 @@ services:
   orinz_database:
     container_name: "orinz-dev"
     image: "orinz-database"
-    restart: always
+    restart: on-failure
     build:
       context: application/drivers/database/sql/
       dockerfile: Dockerfile
