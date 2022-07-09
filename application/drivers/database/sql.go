@@ -14,7 +14,7 @@ const templateDNS = "%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local"
 // The DNS template used is 'username:password@tcp(address)/dbname?charset=utf8mb4&parseTime=True&loc=Local'
 func ConnectSQL() *gorm.DB {
 
-	DNS := fmt.Sprintf(templateDNS, os.Getenv("MARIADB_USER"), os.Getenv("MARIADB_PASS"), os.Getenv("MARIADB_HOST"), os.Getenv("MARIADB_DATABASE"))
+	DNS := fmt.Sprintf(templateDNS, os.Getenv("DB_USER"), os.Getenv("DB_PASS"), os.Getenv("DB_HOST"), os.Getenv("DB_NAME"))
 
 	db, err := gorm.Open(mysql.Open(DNS))
 	if err != nil {
