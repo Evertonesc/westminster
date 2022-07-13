@@ -11,7 +11,7 @@ type CreateMemberUseCase struct {
 	repository member.Repository
 }
 
-func NewCreateMemberUseCase(repository member.Repository) CreateMemberUseCase {
+func New(repository member.Repository) CreateMemberUseCase {
 	return CreateMemberUseCase{
 		repository: repository,
 	}

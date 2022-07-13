@@ -54,7 +54,7 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			uc := NewCreateMemberUseCase(tt.fields.repository())
+			uc := New(tt.fields.repository())
 			err := uc.Execute(tt.args.ctx, tt.args.memberRequest)
 			if err != nil {
 				assert.Equalf(t, tt.wantErr, err, "Execute() error = %v, wantErr %v", err, tt.wantErr)
