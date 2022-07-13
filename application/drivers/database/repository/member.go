@@ -14,7 +14,7 @@ type Member struct {
 	Email     string
 }
 
-func NewRepositoryMember(member member.Member) Member {
+func NewMember(member member.Member) Member {
 	return Member{
 		Name:      member.Name,
 		BirthDate: member.BirthDate,
@@ -31,7 +31,7 @@ func NewMemberRepository() MemberRepository {
 }
 
 func (r MemberRepository) CreateMember(ctx context.Context, member member.Member) error {
-	m := NewRepositoryMember(member)
+	m := NewMember(member)
 	fmt.Println(m)
 
 	return errors.New("error when trying to create a member")
