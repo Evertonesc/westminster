@@ -2,8 +2,11 @@ package usecase
 
 //go:generate mockgen -source=$GOFILE -destination=mock_$GOFILE -package=$GOPACKAGE
 
-import "context"
+import (
+	"context"
+	"orinz/application/domain/class"
+)
 
 type CreateClass interface {
-	CreateClass(ctx context.Context, className string) error
+	Execute(ctx context.Context, className class.Class) error
 }
