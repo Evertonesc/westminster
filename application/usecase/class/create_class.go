@@ -1,14 +1,20 @@
 package usecase
 
-import "context"
+import (
+	"context"
+	"orinz/application/domain/class"
+)
 
 type CreateClassUsecase struct {
+	r class.Repository
 }
 
-func New() CreateClassUsecase {
-	return CreateClassUsecase{}
+func New(r class.Repository) CreateClassUsecase {
+	return CreateClassUsecase{
+		r: r,
+	}
 }
 
-func (uc CreateClassUsecase) CreateClass(ctx context.Context, className string) error {
-	return nil
+func (uc CreateClassUsecase) Execute(ctx context.Context, className class.Class) error {
+	return uc.r.Create(ctx, className)
 }
