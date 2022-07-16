@@ -5,17 +5,22 @@ import (
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 	"orinz/application/domain/class"
+	"time"
 )
 
 type Class struct {
-	ID   string
-	Name string
+	ID        string
+	Name      string
+	CreateAt  time.Time
+	UpdatedAt time.Time
 }
 
 func NewClass(class class.Class) Class {
 	return Class{
-		ID:   uuid.NewString(),
-		Name: class.Name,
+		ID:        uuid.NewString(),
+		Name:      class.Name,
+		CreateAt:  time.Now().UTC(),
+		UpdatedAt: time.Now().UTC(),
 	}
 }
 
@@ -30,5 +35,6 @@ func NewClassRepository(db *gorm.DB) ClassRepository {
 }
 
 func (r ClassRepository) Create(ctx context.Context, class class.Class) error {
-	return nil
+	c := NewClass(class)
+	return r.db.Create(c).Error
 }
