@@ -6,4 +6,5 @@ import "context"
 
 type Repository interface {
 	Create(ctx context.Context, class Class) error
+	Get(ctx context.Context, ID string) error
 }
