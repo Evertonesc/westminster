@@ -5,16 +5,16 @@ import (
 	"orinz/application/domain/class"
 )
 
-type CreateClassUsecase struct {
+type CreateClassUseCase struct {
 	r class.Repository
 }
 
-func New(r class.Repository) CreateClassUsecase {
-	return CreateClassUsecase{
+func NewCreateClass(r class.Repository) CreateClassUseCase {
+	return CreateClassUseCase{
 		r: r,
 	}
 }
 
-func (uc CreateClassUsecase) Execute(ctx context.Context, className class.Class) error {
+func (uc CreateClassUseCase) Execute(ctx context.Context, className class.Class) error {
 	return uc.r.Create(ctx, className)
 }
