@@ -3,9 +3,12 @@ package application
 import (
 	"fmt"
 	"orinz/application/drivers/database"
+	"orinz/application/drivers/database/repository"
+	usecase "orinz/application/usecase/class"
 )
 
 type Engine struct {
+	createClassUseCase usecase.CreateClassUseCase
 }
 
 func New() *Engine {
@@ -17,5 +20,7 @@ func New() *Engine {
 func (e *Engine) loadDependencies() {
 	db := database.ConnectSQL()
 	fmt.Println("database connection successfully")
-	fmt.Println(db)
+
+	classRepository := repository.NewClassRepository(db)
+	e.createClassUseCase = usecase.NewCreateClass(classRepository)
 }
