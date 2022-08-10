@@ -38,3 +38,7 @@ func (r ClassRepository) Create(ctx context.Context, class class.Class) error {
 	c := NewClass(class)
 	return r.db.Create(c).Error
 }
+
+func (r ClassRepository) Get(ctx context.Context, ID string) error {
+	return nil
+}
