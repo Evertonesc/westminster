@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-func TestCreateClassUsecase_CreateClass(t *testing.T) {
+func TestCreateClassUseCase_CreateClass(t *testing.T) {
 	type fields struct {
 		r func() class.Repository
 	}
@@ -45,7 +45,7 @@ func TestCreateClassUsecase_CreateClass(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			uc := New(tt.fields.r())
+			uc := NewCreateClass(tt.fields.r())
 			if err := uc.Execute(tt.args.ctx, tt.args.className); err != nil {
 				assert.Equalf(t, tt.wantErr, err, "Execute() error = %v, wantErr %v", err, tt.wantErr)
 			} else {
