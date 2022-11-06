@@ -4,6 +4,6 @@ package member
 
 import "context"
 
-type Repository interface {
+type Writer interface {
 	CreateMember(ctx context.Context, member Member) (Member, error)
 }
