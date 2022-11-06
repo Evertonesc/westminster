@@ -1,25 +1,22 @@
 package member
 
+import "time"
+
 type Member struct {
-	Name      string
-	BirthDate string
-	Address   string //Make a struct
-	Email     string //Make a struct
+	ID              string
+	Name            string
+	FinancialNumber int
+	Location        string
+	Enabled         bool
+	CreatedAt       time.Time
+	UpdatedAt       time.Time
 }
 
-func New(name, birthDate, address, email string) Member {
+func NewMember(name, location string, financialNumber int, enabled bool) Member {
 	return Member{
-		Name:      name,
-		BirthDate: birthDate,
-		Address:   address,
-		Email:     email,
+		Name:            name,
+		FinancialNumber: financialNumber,
+		Location:        location,
+		Enabled:         enabled,
 	}
-}
-
-// Validate TODO: Implement validation
-func (m Member) Validate() bool {
-	if m.Name == "" || m.Address == "" || m.BirthDate == "" {
-		return false
-	}
-	return true
 }
