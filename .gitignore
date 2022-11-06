@@ -154,3 +154,5 @@ mock_*.go
 .env-*
 .env
 
+*.DS_Store
+
