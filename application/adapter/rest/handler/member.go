@@ -2,8 +2,8 @@ package handler
 
 import (
 	"context"
-	"orinz/application/adapter/rest/presenter"
-	"orinz/application/domain/member"
+	"westminster/application/adapter/rest/presenter"
+	"westminster/application/domain/member"
 )
 
 type CreateMemberUseCase interface {

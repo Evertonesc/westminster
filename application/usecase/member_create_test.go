@@ -5,10 +5,10 @@ import (
 	"errors"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"orinz/application/adapter/rest/presenter"
-	"orinz/application/domain/member"
 	"testing"
 	"time"
+	"westminster/application/adapter/rest/presenter"
+	"westminster/application/domain/member"
 )
 
 func TestCreateMemberUseCase_Execute(t *testing.T) {

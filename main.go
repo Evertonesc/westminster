@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"orinz/application"
+	"westminster/application"
 )
 
 func main() {
