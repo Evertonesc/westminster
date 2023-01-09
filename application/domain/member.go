@@ -1,6 +1,15 @@
-package member
+package domain
 
-import "time"
+//go:generate mockgen -source=$GOFILE -destination=mock_$GOFILE -package=$GOPACKAGE
+
+import (
+	"context"
+	"time"
+)
+
+type MemberWriter interface {
+	CreateMember(ctx context.Context, member Member) (Member, error)
+}
 
 type Member struct {
 	ID              string

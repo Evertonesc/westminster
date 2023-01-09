@@ -3,9 +3,9 @@ package handler
 import (
 	"context"
 	"westminster/application/adapter/rest/presenter"
-	"westminster/application/domain/member"
+	"westminster/application/domain"
 )
 
 type CreateMemberUseCase interface {
-	Execute(ctx context.Context, mr presenter.MemberRequest) (member.Member, error)
+	Execute(ctx context.Context, mr presenter.MemberRequest) (domain.Member, error)
 }

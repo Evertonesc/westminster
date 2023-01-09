@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 	"westminster/application/adapter/rest/presenter"
-	"westminster/application/domain/member"
+	"westminster/application/domain"
 )
 
 func TestCreateMemberUseCase_Execute(t *testing.T) {
@@ -16,7 +16,7 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 	now := time.Now().UTC()
 
 	type fields struct {
-		w func() member.Writer
+		w func() domain.MemberWriter
 	}
 	type args struct {
 		ctx context.Context
@@ -27,21 +27,21 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 		fields     fields
 		args       args
 		wantErr    error
-		wantMember member.Member
+		wantMember domain.Member
 	}{
 		{
 			name: "should successfully create a member",
 			fields: fields{
-				w: func() member.Writer {
-					mock := member.NewMockWriter(ctrl)
+				w: func() domain.MemberWriter {
+					mock := domain.NewMockMemberWriter(ctrl)
 					mock.EXPECT().
-						CreateMember(gomock.Any(), member.Member{
+						CreateMember(gomock.Any(), domain.Member{
 							Name:            "some name",
 							FinancialNumber: 434,
 							Location:        "some location",
 							Enabled:         true,
 						}).
-						Return(member.Member{
+						Return(domain.Member{
 							ID:              "some-id",
 							Name:            "some name",
 							FinancialNumber: 434,
@@ -62,7 +62,7 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 					Enabled:         true,
 				},
 			},
-			wantMember: member.Member{
+			wantMember: domain.Member{
 				ID:              "some-id",
 				Name:            "some name",
 				FinancialNumber: 434,
@@ -76,16 +76,16 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 		{
 			name: "should return an error when the database writer fails",
 			fields: fields{
-				w: func() member.Writer {
-					mock := member.NewMockWriter(ctrl)
+				w: func() domain.MemberWriter {
+					mock := domain.NewMockMemberWriter(ctrl)
 					mock.EXPECT().
-						CreateMember(gomock.Any(), member.Member{
+						CreateMember(gomock.Any(), domain.Member{
 							Name:            "some name",
 							FinancialNumber: 434,
 							Location:        "some location",
 							Enabled:         true,
 						}).
-						Return(member.Member{}, errors.New("unexpected error"))
+						Return(domain.Member{}, errors.New("unexpected error"))
 					return mock
 				},
 			},
@@ -98,7 +98,7 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 					Enabled:         true,
 				},
 			},
-			wantMember: member.Member{},
+			wantMember: domain.Member{},
 			wantErr:    errors.New("unexpected error"),
 		},
 	}
