@@ -1,6 +1,6 @@
 package domain
 
-//go:generate mockgen -source=$GOFILE -destination=mock_$GOFILE -package=$GOPACKAGE
+//go:generate mockgen -source=$GOFILE -destination=mocks/mock_$GOFILE -package=mocks
 
 import (
 	"context"
