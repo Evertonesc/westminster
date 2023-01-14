@@ -9,7 +9,6 @@ import (
 	"time"
 	"westminster/application/adapter/rest/presenter"
 	"westminster/application/domain"
-	"westminster/application/domain/mocks"
 )
 
 func TestCreateMemberUseCase_Execute(t *testing.T) {
@@ -34,7 +33,7 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 			name: "should successfully create a member",
 			fields: fields{
 				w: func() domain.MemberWriter {
-					mock := mocks.NewMockMemberWriter(ctrl)
+					mock := domain.NewMockMemberWriter(ctrl)
 					mock.EXPECT().
 						CreateMember(gomock.Any(), domain.Member{
 							Name:            "some name",
@@ -78,7 +77,7 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 			name: "should return an error when the database writer fails",
 			fields: fields{
 				w: func() domain.MemberWriter {
-					mock := mocks.NewMockMemberWriter(ctrl)
+					mock := domain.NewMockMemberWriter(ctrl)
 					mock.EXPECT().
 						CreateMember(gomock.Any(), domain.Member{
 							Name:            "some name",
