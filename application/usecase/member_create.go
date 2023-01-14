@@ -2,12 +2,18 @@ package usecase
 
 import (
 	"context"
-	"westminster/application/adapter/rest/presenter"
 	"westminster/application/domain"
 )
 
 type CreateMemberUseCase struct {
 	w domain.MemberWriter
+}
+
+type MemberInteractor struct {
+	Name            string
+	Location        string
+	FinancialNumber int
+	Enabled         bool
 }
 
 func NewCreateMemberUseCase(w domain.MemberWriter) CreateMemberUseCase {
@@ -16,7 +22,7 @@ func NewCreateMemberUseCase(w domain.MemberWriter) CreateMemberUseCase {
 	}
 }
 
-func (uc CreateMemberUseCase) Execute(ctx context.Context, mr presenter.MemberRequest) (domain.Member, error) {
-	var m = domain.NewMember(mr.Name, mr.Location, mr.FinancialNumber, mr.Enabled)
+func (uc CreateMemberUseCase) Execute(ctx context.Context, i MemberInteractor) (domain.Member, error) {
+	var m = domain.NewMember(i.Name, i.Location, i.FinancialNumber, i.Enabled)
 	return uc.w.CreateMember(ctx, m)
 }

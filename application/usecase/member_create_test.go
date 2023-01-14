@@ -7,7 +7,6 @@ import (
 	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"
-	"westminster/application/adapter/rest/presenter"
 	"westminster/application/domain"
 )
 
@@ -20,7 +19,7 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 	}
 	type args struct {
 		ctx context.Context
-		mr  presenter.MemberRequest
+		i   MemberInteractor
 	}
 	tests := []struct {
 		name       string
@@ -55,7 +54,7 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 			},
 			args: args{
 				ctx: context.Background(),
-				mr: presenter.MemberRequest{
+				i: MemberInteractor{
 					Name:            "some name",
 					Location:        "some location",
 					FinancialNumber: 434,
@@ -91,7 +90,7 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 			},
 			args: args{
 				ctx: context.Background(),
-				mr: presenter.MemberRequest{
+				i: MemberInteractor{
 					Name:            "some name",
 					Location:        "some location",
 					FinancialNumber: 434,
@@ -106,7 +105,7 @@ func TestCreateMemberUseCase_Execute(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 
 			uc := NewCreateMemberUseCase(tt.fields.w())
-			m, err := uc.Execute(tt.args.ctx, tt.args.mr)
+			m, err := uc.Execute(tt.args.ctx, tt.args.i)
 
 			assert.EqualValues(t, tt.wantErr, err)
 			assert.EqualValues(t, tt.wantMember, m)

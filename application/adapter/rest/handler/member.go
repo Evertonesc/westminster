@@ -2,10 +2,10 @@ package handler
 
 import (
 	"context"
-	"westminster/application/adapter/rest/presenter"
 	"westminster/application/domain"
+	"westminster/application/usecase"
 )
 
 type CreateMemberUseCase interface {
-	Execute(ctx context.Context, mr presenter.MemberRequest) (domain.Member, error)
+	Execute(ctx context.Context, i usecase.MemberInteractor) (domain.Member, error)
 }
