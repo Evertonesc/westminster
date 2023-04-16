@@ -1,8 +1,8 @@
 package presenter
 
 type MemberRequest struct {
-	Name            string
-	Location        string
-	FinancialNumber int
-	Enabled         bool
+	Name            string `json:"name"`
+	Location        string `json:"location"`
+	FinancialNumber int    `json:"financial_number"`
+	Enabled         bool   `json:"enabled"`
 }

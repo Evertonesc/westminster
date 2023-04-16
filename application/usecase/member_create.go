@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"context"
+	"time"
 	"westminster/application/domain"
 )
 
@@ -10,10 +11,13 @@ type CreateMemberUseCase struct {
 }
 
 type MemberInteractor struct {
+	ID              string
 	Name            string
 	Location        string
 	FinancialNumber int
 	Enabled         bool
+	CreateAt        time.Time
+	UpdatedAt       time.Time
 }
 
 func NewCreateMemberUseCase(w domain.MemberWriter) CreateMemberUseCase {
