@@ -3,6 +3,7 @@ package usecase
 import (
 	"context"
 	"time"
+
 	"westminster/application/domain"
 )
 
@@ -26,7 +27,10 @@ func NewCreateMemberUseCase(w domain.MemberWriter) CreateMemberUseCase {
 	}
 }
 
-func (uc CreateMemberUseCase) Execute(ctx context.Context, i MemberInteractor) (domain.Member, error) {
-	var m = domain.NewMember(i.Name, i.Location, i.FinancialNumber, i.Enabled)
+func (uc CreateMemberUseCase) Execute(
+	ctx context.Context,
+	i MemberInteractor,
+) (domain.Member, error) {
+	m := domain.NewMember(i.Name, i.Location, i.FinancialNumber, i.Enabled)
 	return uc.w.CreateMember(ctx, m)
 }
