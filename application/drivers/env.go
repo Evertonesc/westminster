@@ -6,8 +6,7 @@ import (
 )
 
 const (
-	MongoDBPort = "MONGODB_PORT"
-	MongoDBHost = "MONGODB_HOST"
+	PostgresConnString = "POSTGRES_CONN_STRING"
 )
 
 func EnsureEnv(key string) string {

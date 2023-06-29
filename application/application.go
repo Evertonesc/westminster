@@ -2,12 +2,12 @@ package application
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/joho/godotenv"
 
 	"westminster/application/adapter/rest"
 	"westminster/application/adapter/rest/handler"
@@ -32,19 +32,17 @@ func New() *Engine {
 }
 
 func (e *Engine) loadDependencies() {
+	err := godotenv.Load
+	if err != nil {
+		log.Fatalf("error loading .env file: %s", err)
+	}
+
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
-	mongoHost := drivers.EnsureEnv(drivers.MongoDBHost)
-	mongoPort := drivers.EnsureEnv(drivers.MongoDBPort)
+	connStr := drivers.EnsureEnv(drivers.PostgresConnString)
 
-	_, err := database.Connect(
-		context.Background(),
-		fmt.Sprintf("%s:%s", mongoHost, mongoPort),
-	)
-	if err != nil {
-		log.Fatal(err)
-	}
+	_ = database.DatabasePool(connStr)
 
 	memberHandler := handler.NewMemberHandler(nil)
 
@@ -58,4 +56,8 @@ func (e *Engine) loadDependencies() {
 
 func (e *Engine) StartHTTPServer() {
 	e.HTTPServer.ListenAndServe()
+}
+
+func (e *Engine) ShutDownHTTPServer(ctx context.Context) {
+	e.HTTPServer.Shutdown(ctx)
 }
