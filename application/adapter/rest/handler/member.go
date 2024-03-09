@@ -1,13 +1,12 @@
 package handler
 
-//go:generate mockgen -source=$GOFILE -destination=mock_$GOFILE -package=$GOPACKAGE
-
 import (
 	"context"
 	"net/http"
 
 	"github.com/go-chi/render"
 
+	"westminster/application/adapter/rest/presenter"
 	"westminster/application/domain"
 	"westminster/application/usecase"
 )
@@ -20,17 +19,18 @@ type MemberHandler struct {
 	uc CreateMemberUseCase
 }
 
-type MemberResponse struct {
-	Name string `json:"name"`
-}
-
-func NewMemberHandler(uc CreateMemberUseCase) MemberHandler {
-	return MemberHandler{
+func NewMemberHandler(uc CreateMemberUseCase) *MemberHandler {
+	return &MemberHandler{
 		uc: uc,
 	}
 }
 
-func (h MemberHandler) CreateMember(w http.ResponseWriter, r *http.Request) {
+func (h *MemberHandler) CreateMember(w http.ResponseWriter, r *http.Request) {
+	var req presenter.MemberRequest
+	render.Bind(r, &req)
+
 	render.Status(r, http.StatusCreated)
-	render.JSON(w, r, MemberResponse{Name: "some name"})
+	render.Render(w, r, &presenter.MemberResponse{
+		Name: req.Name,
+	})
 }
