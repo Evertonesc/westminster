@@ -6,6 +6,6 @@ import (
 	"westminster/application/adapter/rest/handler"
 )
 
-func RegisterRoutes(r chi.Router, memberHandler handler.MemberHandler) {
+func RegisterRoutes(r chi.Router, memberHandler *handler.MemberHandler) {
 	r.Post("/members", memberHandler.CreateMember)
 }
