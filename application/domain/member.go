@@ -1,14 +1,12 @@
 package domain
 
-//go:generate mockgen -source=$GOFILE -destination=mock_$GOFILE -package=$GOPACKAGE
-
 import (
 	"context"
 	"time"
 )
 
 type MemberWriter interface {
-	CreateMember(ctx context.Context, member Member) (Member, error)
+	CreateMember(ctx context.Context, member *Member) (*Member, error)
 }
 
 type Member struct {
@@ -21,8 +19,8 @@ type Member struct {
 	UpdatedAt       time.Time
 }
 
-func NewMember(name, location string, financialNumber int, enabled bool) Member {
-	return Member{
+func NewMember(name, location string, financialNumber int, enabled bool) *Member {
+	return &Member{
 		Name:            name,
 		FinancialNumber: financialNumber,
 		Location:        location,
