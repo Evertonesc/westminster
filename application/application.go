@@ -7,12 +7,13 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/render"
 	"github.com/joho/godotenv"
 
 	"westminster/application/adapter/rest"
 	"westminster/application/adapter/rest/handler"
 	"westminster/application/drivers"
-	"westminster/application/drivers/database"
+	"westminster/application/drivers/sqldb"
 )
 
 type (
@@ -32,17 +33,17 @@ func New() *Engine {
 }
 
 func (e *Engine) loadDependencies() {
-	err := godotenv.Load
+	err := godotenv.Load(".env")
 	if err != nil {
-		log.Fatalf("error loading .env file: %s", err)
+		log.Fatalf("loading env file: %s", err.Error())
 	}
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	r.Use(render.SetContentType(render.ContentTypeJSON))
 
 	connStr := drivers.EnsureEnv(drivers.PostgresConnString)
-
-	_ = database.DatabasePool(connStr)
+	_ = sqldb.DatabasePool(context.Background(), connStr)
 
 	memberHandler := handler.NewMemberHandler(nil)
 
