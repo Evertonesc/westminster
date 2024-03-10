@@ -147,7 +147,6 @@ fabric.properties
 mock_*.go
 
 #Env files
-.env-*
 .env
 
 *.DS_Store
