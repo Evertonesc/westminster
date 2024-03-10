@@ -33,7 +33,7 @@ func New() *Engine {
 }
 
 func (e *Engine) loadDependencies() {
-	err := godotenv.Load(".env")
+	err := godotenv.Load(".env-local")
 	if err != nil {
 		log.Fatalf("loading env file: %s", err.Error())
 	}
